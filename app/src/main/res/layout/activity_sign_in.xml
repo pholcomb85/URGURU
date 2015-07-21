@@ -1,0 +1,69 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.urguru.ha.urguru.SignIn"
+    android:background="@drawable/orange_screen">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView_urguruTitle"
+        android:background="@drawable/urguru_logo_floating"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/imageView_urguruTitle_contentDescription" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/editText_email"
+        android:hint="@string/editText_email"
+        android:layout_below="@+id/imageView_urguruTitle"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/editText_password"
+        android:hint="@string/editText_password"
+        android:layout_below="@+id/editText_email"
+        android:layout_alignLeft="@+id/editText_email"
+        android:layout_alignStart="@+id/editText_email" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_signIn"
+        android:id="@+id/button_signIn"
+        android:onClick="onClickListenerSignIn"
+        android:background="#ff5b44ac"
+        android:layout_marginTop="44dp"
+        android:layout_below="@+id/editText_password"
+        android:layout_alignLeft="@+id/editText_password"
+        android:layout_alignStart="@+id/editText_password"
+        android:layout_toStartOf="@+id/button_newAccount"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="15dp" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_newAccount"
+        android:id="@+id/button_newAccount"
+        android:onClick="onClickListenerNewAccount"
+        android:background="#ff5b44ac"
+        android:layout_alignTop="@+id/button_signIn"
+        android:layout_alignRight="@+id/editText_password"
+        android:layout_alignEnd="@+id/editText_password" />
+
+
+</RelativeLayout>

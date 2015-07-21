@@ -1,0 +1,198 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.urguru.ha.urguru.CreateProfile"
+    android:background="@drawable/orange_screen">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/textView_createProfile"
+        android:id="@+id/textView_createProfile"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView_createProfile"
+        android:layout_below="@+id/textView_createProfile"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" >
+
+        <GridLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/editText_realName"
+                android:hint="@string/editText_realName"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="50dp" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/radioGroup_sex"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/textView_sex"
+                    android:id="@+id/textView2" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radioButton_male"
+                    android:text="@string/radio_male" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/radio_female"
+                    android:id="@+id/radioButton_female" />
+
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/textView_whenBorn"
+                android:textSize="20sp"
+                android:layout_marginTop="26dp"
+                android:text="@string/textView_whenBorn"
+                android:layout_marginLeft="50dp" />
+
+            <DatePicker
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/datePicker"
+                android:datePickerMode="spinner"
+                android:calendarViewShown="false"
+                android:clickable="true"
+                android:spinnersShown="true"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="10dp">
+
+            </DatePicker>
+
+            <TimePicker
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/timePicker"
+                android:clickable="true"
+                android:timePickerMode="spinner"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="10dp">
+
+            </TimePicker>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/textView_whereLive"
+                android:id="@+id/textView_whereLive"
+                android:textSize="20sp"
+                android:layout_marginTop="26dp"
+                android:layout_marginLeft="50dp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText_country"
+                android:layout_marginTop="10dp"
+                android:hint="@string/editText_country"
+                android:layout_marginLeft="50dp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText_city"
+                android:layout_marginTop="10dp"
+                android:hint="@string/editText_city"
+                android:layout_marginLeft="50dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/textView_avatarName"
+                android:layout_marginTop="26dp"
+                android:text="@string/textView_avatarName"
+                android:layout_marginLeft="50dp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/editText_avatarName"
+                android:hint="@string/editText_avatarName"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="10dp" />
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_avatarImage"
+                android:id="@+id/button_avatarImage"
+                android:layout_marginLeft="200dp"
+                android:layout_marginTop="25dp"
+                android:onClick="setContentView" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView_avatarImage"
+                    android:contentDescription="@string/imageView_avatarImage"
+                    android:background="@drawable/no_picture_level_0"
+                    android:layout_marginLeft="200dp"
+                    android:layout_marginTop="10dp" />
+
+                <ImageView
+                    android:layout_width="138dp"
+                    android:layout_height="138dp"
+                    android:id="@+id/imageView_picture"
+                    android:contentDescription="@string/imageView_picturePlaceholder"
+                    android:background="@drawable/no_picture"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="234dp" />
+            </RelativeLayout>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button_finish"
+                android:onClick="setContentView"
+                android:background="#ff5b44ac"
+                android:text="@string/button_finish"
+                android:layout_marginLeft="400dp"
+                android:layout_marginTop="20dp" />
+
+        </GridLayout>
+    </ScrollView>
+
+</RelativeLayout>
