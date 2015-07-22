@@ -108,7 +108,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="@string/textView_whereLive"
+                android:text="@string/textView_where"
                 android:id="@+id/textView_whereLive"
                 android:textSize="20sp"
                 android:layout_marginTop="26dp"
@@ -157,7 +157,7 @@
                 android:id="@+id/button_avatarImage"
                 android:layout_marginLeft="200dp"
                 android:layout_marginTop="25dp"
-                android:onClick="setContentView" />
+                android:onClick="onButtonClickGetPicture" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -186,7 +186,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/button_finish"
-                android:onClick="setContentView"
+                android:onClick="onButtonClickFinishProfile"
                 android:background="#ff5b44ac"
                 android:text="@string/button_finish"
                 android:layout_marginLeft="400dp"

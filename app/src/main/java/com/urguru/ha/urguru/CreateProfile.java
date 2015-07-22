@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.parse.GetCallback;
@@ -44,105 +45,78 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 
-public class CreateProfile extends ActionBarActivity {
-
-    private int REQUEST_CAMERA;
-    private int SELECT_FILE;
-    ImageView imageView_picture = (ImageView) findViewById(R.id.imageView_picture);
-
-
+public class CreateProfile extends SignIn {
+    private View textView_createProfile;
+    private EditText editText_realName;
+    private String realName;
+    private RadioGroup radioGroup_sex;
+    private int sex;
+    private View textView_whenBorn;
+    private DatePicker datePicker;
+    private int birth_day;
+    private int birth_month;
+    private int birth_year;
+    private TimePicker timePicker;
+    private int birth_hour;
+    private int birth_minute;
+    private View textView_where;
+    private EditText editText_country;
+    private String country;
+    private EditText editText_city;
+    private String city;
+    private View textView_avatarName;
+    private EditText editText_avatarName;
+    private String avatarName;
+    private Button button_avatarImage;
+    private ImageView imageView_avatarImage;
+    private ImageView imageView_picture;
+    private Button button_finish;
+    private String email;
+    private String password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_profile);
-
-        View textView_creatProfile = (View) findViewById(R.id.textView_createProfile);
-
-        EditText editText_realName = (EditText) findViewById(R.id.editText_realName);
-        final String realName = editText_realName.getText().toString();
-
-        RadioGroup RadioGroupSex = (RadioGroup) findViewById(R.id.radioGroup_sex);
-        RadioGroupSex.addView(findViewById(R.id.radioButton_male));
-        RadioGroupSex.addView(findViewById(R.id.radioButton_female));
-        final int sex = RadioGroupSex.getCheckedRadioButtonId();
-
-        View textView_whenBorn = (View) findViewById(R.id.textView_whenBorn);
-
-        DatePicker datePicker = (DatePicker) findViewById(R.id.datePicker);
-        final int birth_day = datePicker.getDayOfMonth();
-        final int birth_month = datePicker.getMonth();
-        final int birth_year = datePicker.getYear();
-
-        TimePicker timePicker = (TimePicker) findViewById(R.id.timePicker);
-        final int birth_hour = timePicker.getCurrentHour();  //0-23
-        final int birth_minute = timePicker.getCurrentMinute();
-
-
-        View textView_Where = (View) findViewById(R.id.textView_whereLive);
-
-        EditText editText_country = (EditText) findViewById(R.id.editText_country);
-        final String country = editText_country.getText().toString();
-
-        EditText editText_city = (EditText) findViewById(R.id.editText_city);
-        final String city = editText_city.getText().toString();
-
-        View textView_avatarName = (View) findViewById(R.id.textView_avatarName);
-
-        EditText editText_avatarName = (EditText) findViewById(R.id.editText_avatarName);
-        final String avatarName = editText_avatarName.getText().toString();
-
-
-        Button button_avatarImage = (Button) findViewById(R.id.button_avatarImage);
-        button_avatarImage.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                selectImage();
-
-                //TODO let the user select an image from their files
-                //TODO help the user crop the image to fit inside the avatar space
-                //TODO save the new image
-                //TODO show the user the new image
-                //TODO allow the user to accept the avatar image or retry
-            }
-        });
-
-        ImageView imageView_avatarImage = (ImageView) findViewById(R.id.imageView_avatarImage);
-
-
-        String objectID = getIntent().getStringExtra("objectID");
-
-        ParseQuery<ParseUser> query = ParseQuery.getQuery("user");
-        query.getInBackground(objectID, new GetCallback<ParseUser>() {
-            public void done(ParseUser user, ParseException e) {
-                if (e == null) {
-                    user.put("realName", realName);
-                    user.put("sex", sex);
-                    user.put("birth_day", birth_day);
-                    user.put("birth_month", birth_month);
-                    user.put("birth_year", birth_year);
-                    user.put("birth_hour", birth_hour);
-                    user.put("birth_minute", birth_minute);
-                    user.put("country", country);
-                    user.put("city", city);
-                    user.put("avatarName", avatarName);
-                    //TODO save the avatar image to the parse user object
-
-                    user.saveInBackground();
-                } else {
-                    // something went wrong
-                }
-            }
-        });
-
-        Button button_finish = (Button) findViewById(R.id.button_finish);
-        button_finish.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                setContentView(R.layout.activity_profile);
-            }
-        });
+        textView_createProfile = (View) findViewById(R.id.textView_createProfile);
+        editText_realName = (EditText) findViewById(R.id.editText_realName);
+        radioGroup_sex = (RadioGroup) findViewById(R.id.radioGroup_sex);
+        radioGroup_sex.addView(findViewById(R.id.radioButton_male));
+        radioGroup_sex.addView(findViewById(R.id.radioButton_female));
+        textView_whenBorn = (View) findViewById(R.id.textView_whenBorn);
+        datePicker = (DatePicker) findViewById(R.id.datePicker);
+        timePicker = (TimePicker) findViewById(R.id.timePicker);
+        textView_where = (View) findViewById(R.id.textView_where);
+        editText_country = (EditText) findViewById(R.id.editText_country);
+        editText_city = (EditText) findViewById(R.id.editText_city);
+        textView_avatarName = (View) findViewById(R.id.textView_avatarName);
+        editText_avatarName = (EditText) findViewById(R.id.editText_avatarName);
+        button_avatarImage = (Button) findViewById(R.id.button_avatarImage);
+        imageView_avatarImage = (ImageView) findViewById(R.id.imageView_avatarImage);
+        imageView_picture = (ImageView) findViewById(R.id.imageView_picture);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_create_profile, menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
     private void selectImage() {
         final CharSequence[] items = { "Take Photo", "Choose from Library", "Cancel" };
@@ -215,35 +189,59 @@ public class CreateProfile extends ActionBarActivity {
                 imageView_picture.setImageBitmap(bm);
             }
         }
+    }
 
+    public void onButtonClickGetPicture(View view) {
+        selectImage();
+    }
 
+    public void onButtonClickFinishProfile(View view) {
+        String objectID = getIntent().getStringExtra("objectID");
+
+        ParseQuery<ParseUser> query = ParseQuery.getQuery("user");
+        query.getInBackground(objectID, new GetCallback<ParseUser>() {
+            public void done(ParseUser user, ParseException e) {
+                if (e == null) {
+
+                    email = getIntent().getStringExtra("email");
+                    password = getIntent().getStringExtra("password");
+                    realName = editText_realName.getText().toString();
+                    user.put("realName", realName);
+                    sex = radioGroup_sex.getCheckedRadioButtonId();
+                    user.put("sex", sex);
+                    birth_day = datePicker.getDayOfMonth();
+                    user.put("birth_day", birth_day);
+                    birth_month = datePicker.getMonth();
+                    user.put("birth_month", birth_month);
+                    birth_year = datePicker.getYear();
+                    user.put("birth_year", birth_year);
+                    birth_hour = timePicker.getCurrentHour();  //0-23
+                    user.put("birth_hour", birth_hour);
+                    birth_minute = timePicker.getCurrentMinute();
+                    user.put("birth_minute", birth_minute);
+                    country = editText_country.getText().toString();
+                    user.put("country", country);
+                    city = editText_city.getText().toString();
+                    user.put("city", city);
+                    avatarName = editText_avatarName.getText().toString();
+                    user.put("avatarName", avatarName);
+                    //TODO save the avatar image to the parse user object
+
+                    user.saveInBackground();
+                } else {
+                    // something went wrong
+                }
+            }
+        });
+
+        setContentView(R.layout.activity_profile);
 
     }
 
 
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_create_profile, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }
 
 

@@ -18,7 +18,7 @@
     <string name="radio_female">Female</string>
     <string name="button_next">Next</string>
     <string name="textView_whenBorn">When where you born?</string>
-    <string name="textView_whereLive">Where do you live?</string>
+    <string name="textView_where">Where do you live?</string>
     <string name="editText_country">Country</string>
     <string name="editText_city">City</string>
     <string name="textView_avatarName">Create your Avatar</string>

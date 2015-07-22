@@ -18,62 +18,26 @@ import com.parse.ParseUser;
 
 public class SignIn extends ActionBarActivity {
 
+    private ImageView imageView_urguruTitle;
+    private EditText editText_email;
+    private String email;
+    private EditText editText_password;
+    private String password;
+    private Button button_signIn;
+    private Button button_newAccount;
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
-
-        // Enable Local Datastore.
-        Parse.enableLocalDatastore(this);
-        Parse.initialize(this, "Jn6YoSmyPjSTSML4dQ6jxtkgeBSLludHCNYvqofO", "TOisNXKgLHai957Ji5hFNtrp1j0kTC4ljRWxfJO9");
-
-        //Test Parse
-        ParseObject testObject = new ParseObject("TestObject");
-        testObject.put("foo", "bar");
-        testObject.saveInBackground();
-
-        ImageView imageView_urguruTitle = (ImageView) findViewById(R.id.imageView_urguruTitle);
-
-
-        EditText editText_email = (EditText) findViewById(R.id.editText_email);
-        final String email = editText_email.getText().toString();
-
-
-        EditText editText_password = (EditText) findViewById(R.id.editText_password);
-        final String password = editText_password.getText().toString();
-
-        Button button_signIn = (Button) findViewById(R.id.button_signIn);
-        button_signIn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                //TODO check if both fields are full
-                //TODO check if it is an email
-                //TODO check if email exists in parse database
-                //TODO check if the password is correct
-
-                //then we can go to Profile
-                setContentView(R.layout.activity_profile);
-            }
-        });
-
-        //creates a new user with Parse
-        ParseUser user = new ParseUser();
-        user.setEmail(email);
-        user.setUsername(email);
-        user.setPassword(password);
-
-        //save the Parse objectID as an intent to use with each CreateProfile
-        String objectID = user.getObjectId();
-        Intent intent = new Intent(SignIn.this, CreateProfile.class);
-        intent.putExtra("objectID", objectID);
-
-        user.signUpInBackground();
-
-        Button button_newAccount = (Button) findViewById(R.id.button_newAccount);
-        button_newAccount.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                setContentView(R.layout.activity_create_profile);
-            }
-        });
+        imageView_urguruTitle = (ImageView) findViewById(R.id.imageView_urguruTitle);
+        editText_email = (EditText) findViewById(R.id.editText_email);
+        editText_password = (EditText) findViewById(R.id.editText_password);
+        button_signIn = (Button) findViewById(R.id.button_signIn);
+        button_newAccount = (Button) findViewById(R.id.button_newAccount);
     }
 
     @Override
@@ -97,4 +61,41 @@ public class SignIn extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+    public void onButtonClickTestParse(View view) {
+        // Enable Local Datastore.
+        Parse.enableLocalDatastore(this);
+        Parse.initialize(this, "Jn6YoSmyPjSTSML4dQ6jxtkgeBSLludHCNYvqofO", "TOisNXKgLHai957Ji5hFNtrp1j0kTC4ljRWxfJO9");
+        //Test Parse
+        ParseObject testObject = new ParseObject("TestObject");
+        testObject.put("foo", "bar");
+        testObject.saveInBackground();
+    }
+
+    public void onButtonClickSignIn(View view) {
+        //todo check email and password with parse database
+        //if it doesn't exist send error
+        //if it does, sign in
+        setContentView(R.layout.activity_profile);
+    }
+
+    public void onButtonClickNewAccount(View view) {
+        //todo check email and password with parse database
+        //if it already exists send error
+        //if not create
+
+        Intent intent = new Intent(this, CreateProfile.class);
+        intent.putExtra("email", email);
+        intent.putExtra("password", password);
+
+
+        setContentView(R.layout.activity_create_profile);
+    }
+
+
+
+
+
+
 }
